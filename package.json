@@ -1,0 +1,32 @@
+{
+  "name": "@lightboxco/eslint-config",
+  "version": "0.1.0",
+  "description": "Shared ESLint rules for Lightbox JavaScript repos",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dphoto/eslint-config.git"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "globals": "^17.7.0"
+  },
+  "peerDependencies": {
+    "eslint": ">=10"
+  },
+  "devDependencies": {
+    "eslint": "^10.7.0"
+  }
+}
