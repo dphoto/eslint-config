@@ -38,7 +38,12 @@ const formatting = {
 	'@stylistic/spaced-comment': [ 'error', 'always' ],
 	'@stylistic/no-multi-spaces': 'error',
 	'@stylistic/no-trailing-spaces': 'error',
-	'@stylistic/no-multiple-empty-lines': [ 'error', { max: 3, maxEOF: 1, maxBOF: 0 } ],
+
+	// A ceiling only. padding-line-between-statements sets the floor at one and
+	// has no count option, so "exactly two" is not expressible — two blank
+	// lines between functions is a convention this rule protects rather than
+	// enforces.
+	'@stylistic/no-multiple-empty-lines': [ 'error', { max: 2, maxEOF: 1, maxBOF: 0 } ],
 	'@stylistic/eol-last': [ 'error', 'always' ],
 
 	// Fine-grained spacing. Low churn — existing code mostly satisfies these
