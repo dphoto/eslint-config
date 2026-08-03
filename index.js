@@ -124,9 +124,13 @@ export const base = [
 	}
 ]
 
+// Exported alongside the layer so a mixed repo can scope environments by path
+// — home lints src/ as browser and scripts/ + rspack.config.js as node.
+export const nodeGlobals = globals.node
+
 export const node = [
 	...base,
-	{ languageOptions: { ...languageOptions, globals: globals.node } }
+	{ languageOptions: { ...languageOptions, globals: nodeGlobals } }
 ]
 
 // Globals shared by the Backbone-era frontends. App-specific ones (home's `m`
@@ -150,4 +154,4 @@ export const browser = [
 	{ languageOptions: { ...languageOptions, globals: browserGlobals } }
 ]
 
-export default { base, node, browser, browserGlobals }
+export default { base, node, browser, nodeGlobals, browserGlobals }

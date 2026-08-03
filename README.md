@@ -12,7 +12,7 @@ Not published to npm yet — install from GitHub, pinned to a tag:
 
 ```json
 "devDependencies": {
-  "@lightboxco/eslint-config": "github:dphoto/eslint-config#v0.2.0",
+  "@lightboxco/eslint-config": "github:dphoto/eslint-config#v0.3.0",
   "eslint": "^10.7.0"
 }
 ```
@@ -63,6 +63,7 @@ export default [
 | `node` | rules + Node globals |
 | `browser` | rules + browser globals + the shared frontend globals |
 | `base` | rules only, no globals — compose your own environment |
+| `nodeGlobals` | the node globals object, for scoping by path |
 | `browserGlobals` | the frontend globals object, for extending |
 
 ## The style
