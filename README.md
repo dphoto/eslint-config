@@ -17,6 +17,19 @@ Not published to npm yet — install from GitHub, pinned to a tag:
 }
 ```
 
+The repo is public, so no token is needed. But npm records a git dependency
+as `git+ssh://` in the lockfile regardless of how it is written, and CI
+runners have no ssh key — so a workflow that installs this needs git pointed
+at https first:
+
+```yaml
+- name: Fetch git dependencies over https
+  run: git config --global url."https://github.com/".insteadOf ssh://git@github.com/
+```
+
+Without it `npm ci` fails with `Permission denied (publickey)` before
+anything else runs.
+
 **Pin the tag, not a branch.** On `#main`, an unrelated `npm install` would pull
 a rule change and silently reformat someone's working tree. On a tag, adopting
 a new version is a deliberate one-line commit per repo.
