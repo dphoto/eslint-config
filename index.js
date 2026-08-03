@@ -133,10 +133,19 @@ export const node = [
 	{ languageOptions: { ...languageOptions, globals: nodeGlobals } }
 ]
 
-// Globals shared by the Backbone-era frontends. App-specific ones (home's `m`
-// and `state`, for instance) belong in that repo's own config, not here.
-export const browserGlobals = {
-	...globals.browser,
+export const browserGlobals = globals.browser
+
+// The Backbone-era frontend globals. Kept apart from browserGlobals because
+// only web still uses them (17 files); folding them in would let `model`,
+// `select`, `view` and `_` pass no-undef everywhere, and those are ordinary
+// enough words to mask a real typo in a repo that never defined them.
+//
+// Compose where they are wanted:
+//   globals: { ...browserGlobals, ...legacyGlobals }
+//
+// App-specific globals (home's `m` and `state`) belong in that repo's own
+// config rather than here.
+export const legacyGlobals = {
 	app: 'writable',
 	utils: 'readonly',
 	Hammer: 'readonly',
@@ -154,4 +163,4 @@ export const browser = [
 	{ languageOptions: { ...languageOptions, globals: browserGlobals } }
 ]
 
-export default { base, node, browser, nodeGlobals, browserGlobals }
+export default { base, node, browser, nodeGlobals, browserGlobals, legacyGlobals }
