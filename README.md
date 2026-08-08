@@ -12,7 +12,7 @@ Not published to npm yet — install from GitHub, pinned to a tag:
 
 ```json
 "devDependencies": {
-  "@lightboxco/eslint-config": "github:dphoto/eslint-config#v0.4.0",
+  "@lightboxco/eslint-config": "github:dphoto/eslint-config#v0.5.0",
   "eslint": "^10.7.0"
 }
 ```
@@ -106,9 +106,16 @@ Non-formatting choices worth knowing:
 - **`no-console` is off.** Console is a legitimate transport across these repos
   — Lambda writes to CloudWatch with it, the servers log to stdout.
 - **`no-unused-vars` is an error, not a warning.** Warnings get scrolled past.
-  Prefix a parameter with `_` to opt out: `function f( a, _b ){}`.
-  Note this applies to *arguments only* — an unused `const _scratch` still
+  Prefix a parameter with `_` to opt out: `function f( a, _b ){}` — the same
+  escape works for caught errors: `catch( _e ){}`. Rest siblings are exempt,
+  so `const { omitted, ...rest } = obj` is fine. Note the `_` opt-out applies
+  to *arguments and caught errors only* — an unused `const _scratch` still
   errors.
+- **`.claude/` is globally ignored.** Claude Code keeps session worktrees —
+  full checkouts of the repo — under `.claude/worktrees/`, and without the
+  ignore a lint sweep of the main checkout reports their problems as the
+  repo's own. Linting *inside* a worktree is unaffected: ignore patterns
+  resolve relative to the config file that declares them.
 
 ## Adopting in a repo
 

@@ -100,8 +100,16 @@ const logic = {
 	'no-undef': 'error',
 
 	// Errors, not warnings: warnings get scrolled past. An underscore prefix
-	// is the deliberate opt-out for a parameter you must accept but not use.
-	'no-unused-vars': [ 'error', { argsIgnorePattern: '^_' } ],
+	// is the deliberate opt-out for a parameter you must accept but not use —
+	// and, since ESLint 9 started checking catch clauses, for a caught error
+	// you inspect only in a debugger. Rest siblings are exempt because
+	// `const { omitted, ...rest } = obj` names `omitted` precisely to keep it
+	// out of `rest`.
+	'no-unused-vars': [ 'error', {
+		argsIgnorePattern: '^_',
+		caughtErrorsIgnorePattern: '^_',
+		ignoreRestSiblings: true
+	} ],
 
 	// Console is a legitimate logging transport across these repos — Lambda
 	// writes to CloudWatch with it, and the servers log to stdout.
@@ -116,6 +124,15 @@ const languageOptions = {
 // Rules only, no globals — compose with an environment layer, or use `node` /
 // `browser` below.
 export const base = [
+
+	// Claude Code keeps session worktrees — full checkouts of the repo — under
+	// .claude/worktrees/, and a lint sweep of the main checkout would descend
+	// into them and report their problems as the repo's own. Ignoring the
+	// directory only affects the outer checkout: ignore patterns resolve
+	// relative to the config file that declares them, so a lint run *inside* a
+	// worktree still covers all of that worktree's files.
+	{ ignores: [ '.claude/' ] },
+
 	js.configs.recommended,
 	{
 		plugins: { '@stylistic': stylistic },
