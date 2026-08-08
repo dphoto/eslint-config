@@ -113,7 +113,13 @@ const logic = {
 
 	// Console is a legitimate logging transport across these repos — Lambda
 	// writes to CloudWatch with it, and the servers log to stdout.
-	'no-console': 'off'
+	'no-console': 'off',
+
+	// A bare `catch{}` around a best-effort call (localStorage, JSON.parse,
+	// a fire-and-forget request) is an established idiom in these repos —
+	// web alone has dozens. Dropping the binding already signals the error
+	// is deliberately ignored; a filler comment on top adds nothing.
+	'no-empty': [ 'error', { allowEmptyCatch: true } ]
 }
 
 const languageOptions = {
