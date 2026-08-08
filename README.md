@@ -111,6 +111,10 @@ Non-formatting choices worth knowing:
   so `const { omitted, ...rest } = obj` is fine. Note the `_` opt-out applies
   to *arguments and caught errors only* — an unused `const _scratch` still
   errors.
+- **Empty `catch{}` is allowed.** A bare catch around a best-effort call
+  (localStorage, `JSON.parse`, a fire-and-forget request) is an established
+  idiom here, and the binding-less form already signals the error is
+  deliberately ignored. Every other empty block still errors.
 - **`.claude/` is globally ignored.** Claude Code keeps session worktrees —
   full checkouts of the repo — under `.claude/worktrees/`, and without the
   ignore a lint sweep of the main checkout reports their problems as the
