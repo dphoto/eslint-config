@@ -1,6 +1,6 @@
 {
   "name": "@lightboxco/eslint-config",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "Shared ESLint rules for Lightbox JavaScript repos",
   "type": "module",
   "main": "index.js",
@@ -20,13 +20,13 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@eslint/js": "^10.0.1",
-    "@stylistic/eslint-plugin": "^5.10.0",
-    "globals": "^17.7.0"
+    "@stylistic/eslint-plugin": "^6.0.1",
+    "globals": "^17.14.0"
   },
   "peerDependencies": {
     "eslint": ">=10"
   },
   "devDependencies": {
-    "eslint": "^10.7.0"
+    "eslint": "^10.15.0"
   }
 }

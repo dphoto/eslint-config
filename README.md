@@ -12,8 +12,8 @@ Not published to npm yet — install from GitHub, pinned to a tag:
 
 ```json
 "devDependencies": {
-  "@lightboxco/eslint-config": "github:dphoto/eslint-config#v0.5.1",
-  "eslint": "^10.7.0"
+  "@lightboxco/eslint-config": "github:dphoto/eslint-config#v0.6.0",
+  "eslint": "^10.15.0"
 }
 ```
 
