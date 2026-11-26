@@ -74,7 +74,7 @@ export default [
 | Export | What it is |
 |---|---|
 | `node` | rules + Node globals |
-| `browser` | rules + browser globals + the shared frontend globals |
+| `browser` | rules + browser globals |
 | `base` | rules only, no globals — compose your own environment |
 | `nodeGlobals` | the node globals object, for scoping by path |
 | `browserGlobals` | plain browser globals, for scoping by path |
@@ -135,9 +135,7 @@ Keep that reformat as its own commit so it never mixes with real changes.
 
 ## What is deliberately not here
 
-Lambda carries a set of layout rules — `padded-blocks`,
-`padding-line-between-statements`, `multiline-ternary`,
-`newline-per-chained-call`, `max-len` and friends — that dictate where blank
-lines and line breaks go. They are not in the shared base because they rewrite
-whole files rather than just whitespace. A repo that wants them can add them to
-its own config.
+Lambda carries a set of layout rules — `padded-blocks`, `multiline-ternary`,
+`max-len` and friends — that dictate where blank lines and line breaks go. They
+are not in the shared base because they rewrite whole files rather than just
+whitespace. A repo that wants them can add them to its own config.
